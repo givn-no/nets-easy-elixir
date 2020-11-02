@@ -11,7 +11,7 @@ defmodule NetsEasy.MixProject do
       package: package(),
       deps: deps(),
       name: "nets_easy",
-      source_url: "https://github.com/hooplab/nets_easy_elixir"
+      source_url: "https://github.com/hooplab/nets-easy-elixir"
     ]
   end
 
@@ -39,7 +39,7 @@ defmodule NetsEasy.MixProject do
     [
       name: "nets_easy",
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/hooplab/nets_easy_elixir"}
+      links: %{"GitHub" => "https://github.com/hooplab/nets-easy-elixir"}
     ]
   end
 end
