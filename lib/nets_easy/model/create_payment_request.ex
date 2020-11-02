@@ -33,7 +33,7 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
     @type t :: %__MODULE__{
             items: [OrderItem.t()],
             amount: Integer.t(),
-            currency: String.t(),
+            currency: Currency.t(),
             reference: String.t()
           }
     @derive Poison.Encoder
@@ -43,6 +43,18 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
       :currency,
       :reference
     ]
+
+    defmodule Currency do
+      @type t :: :NOK
+
+      @doc false
+      def from_string(currency) do
+        case String.downcase(currency) do
+          "nok" -> :NOK
+          _ -> raise "invalid currency code #{currency}"
+        end
+      end
+    end
 
     defmodule OrderItem do
       @moduledoc """
@@ -87,14 +99,14 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
     """
     @type t :: %__MODULE__{
             charge: boolean() | nil,
-            public_device: boolean(),
+            public_device: boolean() | nil,
             integration_type: integration_type() | nil,
             url: String.t() | nil,
             return_url: String.t() | nil,
             terms_url: String.t(),
             appearance: Appearance.t() | nil,
             merchant_handles_consumer_data: boolean() | nil,
-            consumer: Consumer.t(),
+            consumer: Consumer.t() | nil,
             consumer_type: ConsumerType.t(),
             merchant_handles_shipping_cost: boolean(),
             shipping: Shipping.t() | nil
@@ -300,11 +312,11 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
       .checkout.consumer_type
       """
       @type t :: %__MODULE__{
-              default: String.t(),
-              supported_types: [
-                String.t()
-              ]
+              default: consumer_type,
+              supported_types: [consumer_type]
             }
+
+      @type consumer_type :: :B2C | :B2B
 
       @derive Poison.Encoder
       defstruct [
@@ -333,35 +345,35 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
         @type t :: :NO | :SWE | :DK
       end
     end
+  end
 
-    defmodule Notifications do
-      @moduledoc """
-      """
+  defmodule Notifications do
+    @moduledoc """
+    """
 
-      @typedoc """
-      .notifications
-      """
+    @typedoc """
+    .notifications
+    """
+    @type t :: %__MODULE__{
+            web_hooks: [WebHook.t()]
+          }
+    @derive Poison.Encoder
+    defstruct [
+      :web_hooks
+    ]
+
+    defmodule WebHook do
       @type t :: %__MODULE__{
-              web_hooks: [WebHook.t()]
+              event_name: String.t(),
+              url: String.t(),
+              authorization: String.t()
             }
       @derive Poison.Encoder
       defstruct [
-        :web_hooks
+        :event_name,
+        :url,
+        :authorization
       ]
-
-      defmodule WebHook do
-        @type t :: %__MODULE__{
-                event_name: String.t(),
-                url: String.t(),
-                authorization: String.t()
-              }
-        @derive Poison.Encoder
-        defstruct [
-          :event_name,
-          :url,
-          :authorization
-        ]
-      end
     end
   end
 
