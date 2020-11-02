@@ -30,7 +30,7 @@ defmodule NetsEasy do
           Tesla.Middleware.Headers,
           [
             {"user-agent", "Tesla"},
-            {"authorization", "Bearer #{secret_key}"}
+            {"authorization", "#{secret_key}"}
           ]
         },
         {Tesla.Middleware.JSON,
