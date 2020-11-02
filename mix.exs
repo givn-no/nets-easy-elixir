@@ -1,4 +1,4 @@
-defmodule SwedbankpayCheckout.MixProject do
+defmodule NetsEasy.MixProject do
   use Mix.Project
 
   def project do
