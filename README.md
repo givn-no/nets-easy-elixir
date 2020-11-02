@@ -3,7 +3,7 @@ A **unofficial** client for Nets Easy's Payment api, not official, not endorsed.
 
 Work in progress.
 
-See: https://tech.dibspayment.com/easyfor documentation
+See: https://tech.dibspayment.com/easy for documentation
 
 
 ## Installation
