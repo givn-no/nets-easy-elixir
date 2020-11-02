@@ -48,12 +48,12 @@ defmodule NetsEasy do
   """
   @spec create_client() :: Tesla.Client.t()
   def create_client() do
-    %{
+    [
       base_url: base_url,
       secret_key: secret_key,
       adapter: adapter,
       additional_middleware: am
-    } = Application.get_env(:nets_easy, NetsEasy)
+    ] = Application.get_all_env(:nets_easy)
 
     additional_middleware =
       if is_nil(am) do
