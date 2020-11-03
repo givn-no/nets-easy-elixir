@@ -2,6 +2,8 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
   @moduledoc """
   """
 
+  alias NetsEasy.Model
+
   @typedoc """
   Root request for creating a payment request.
 
@@ -31,7 +33,7 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
     .order
     """
     @type t :: %__MODULE__{
-            items: [OrderItem.t()],
+            items: [Model.OrderItem.t()],
             amount: Integer.t(),
             currency: Currency.t(),
             reference: String.t()
@@ -54,39 +56,6 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
           _ -> raise "invalid currency code #{currency}"
         end
       end
-    end
-
-    defmodule OrderItem do
-      @moduledoc """
-      """
-
-      @typedoc """
-      .order.items
-      """
-      @type t :: %__MODULE__{
-              reference: String.t() | nil,
-              name: String.t(),
-              quantity: Integer.t(),
-              unit: String.t(),
-              unit_price: Integer.t(),
-              tax_rate: Integer.t(),
-              tax_amount: Integer.t(),
-              gross_total_amount: Integer.t(),
-              net_total_amount: Integer.t()
-            }
-
-      @derive Poison.Encoder
-      defstruct [
-        :reference,
-        :name,
-        :quantity,
-        :unit,
-        :unit_price,
-        :tax_rate,
-        :tax_amount,
-        :gross_total_amount,
-        :net_total_amount
-      ]
     end
   end
 
@@ -192,8 +161,8 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
       @type t :: %__MODULE__{
               reference: String.t(),
               email: String.t(),
-              shipping_address: ShippingAddress.t(),
-              phone_number: PhoneNumber.t(),
+              shipping_address: Model.ShippingAddress.t(),
+              phone_number: Model.PhoneNumber.t(),
               private_person: PrivatePerson.t() | nil,
               company: Company.t() | nil
             }
@@ -206,48 +175,6 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
         :private_person,
         :company
       ]
-
-      defmodule ShippingAddress do
-        @moduledoc """
-        """
-
-        @typedoc """
-        .checkout.consumer.shipping_address
-        """
-        @type t :: %__MODULE__{
-                address_line_1: String.t(),
-                address_line_2: String.t(),
-                postal_code: String.t(),
-                city: String.t(),
-                country: String.t()
-              }
-        @derive Poison.Encoder
-        defstruct [
-          :address_line_1,
-          :address_line_2,
-          :postal_code,
-          :city,
-          :country
-        ]
-      end
-
-      defmodule PhoneNumber do
-        @moduledoc """
-        """
-
-        @typedoc """
-        .checkout.consumer.phone_number
-        """
-        @type t :: %__MODULE__{
-                prefix: String.t(),
-                number: String.t()
-              }
-        @derive Poison.Encoder
-        defstruct [
-          :prefix,
-          :number
-        ]
-      end
 
       defmodule PrivatePerson do
         @moduledoc """

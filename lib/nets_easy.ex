@@ -92,5 +92,24 @@ defmodule NetsEasy do
         }
       })
     end
+
+    @doc """
+    Get a payment order.
+    """
+    @spec get_payment_order(Tesla.Env.client(), String.t()) ::
+            {:ok, Model.GetOrderResponse.t()}
+            | {:error, Tesla.Env.t()}
+            | {:error, {String.t(), Tesla.Env.t()}}
+    def get_payment_order(client, payment_id) do
+      Tesla.post(
+        client,
+        "/v1/payments/#{payment_id}"
+      )
+      |> Helpers.evaluate_response(%{
+        200 => %{
+          decode_as: Model.GetOrderResponse.shell()
+        }
+      })
+    end
   end
 end
