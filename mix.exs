@@ -27,7 +27,7 @@ defmodule NetsEasy.MixProject do
       {:poison, "~> 4.0"},
       {:inflex, "~> 2.0.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:jason, "~> 1.2", only: :test}
+      {:jason, "~> 1.2"}
     ]
   end
 

@@ -13,6 +13,8 @@ defmodule NetsEasy.Model.GetOrderResponse do
       payment: Model.GetOrderResponse.Payment.t()
         }
 
+
+  @derive Jason.Encoder
   @derive Poison.Encoder
   defstruct [
       :payment
