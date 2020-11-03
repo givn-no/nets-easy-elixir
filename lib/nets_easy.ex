@@ -101,7 +101,7 @@ defmodule NetsEasy do
             | {:error, Tesla.Env.t()}
             | {:error, {String.t(), Tesla.Env.t()}}
     def get_payment_order(client, payment_id) do
-      Tesla.post(
+      Tesla.get(
         client,
         "/v1/payments/#{payment_id}"
       )
