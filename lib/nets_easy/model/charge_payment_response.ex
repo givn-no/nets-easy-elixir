@@ -8,8 +8,8 @@ defmodule NetsEasy.Model.ChargePaymentResponse do
   See https://tech.dibspayment.com/easy/api/paymentapi#chargePayment
   """
   @type t :: %__MODULE__{
-    charge_id: String.t()
-  }
+          charge_id: String.t()
+        }
   @derive Poison.Encoder
   defstruct [
     :charge_id
