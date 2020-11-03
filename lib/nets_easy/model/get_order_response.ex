@@ -1,4 +1,4 @@
-defmodule Model.GetOrderResponse do
+defmodule NetsEasy.Model.GetOrderResponse do
   @moduledoc """
   """
 
