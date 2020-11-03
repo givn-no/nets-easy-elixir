@@ -2,8 +2,6 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
   @moduledoc """
   """
 
-  alias NetsEasy.Model
-
   @typedoc """
   Root request for creating a payment request.
 
@@ -29,6 +27,8 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
     @moduledoc """
     """
 
+    alias NetsEasy.Model
+
     @typedoc """
     .order
     """
@@ -45,18 +45,6 @@ defmodule NetsEasy.Model.CreatePaymentRequest do
       :currency,
       :reference
     ]
-
-    defmodule Currency do
-      @type t :: :NOK
-
-      @doc false
-      def from_string(currency) do
-        case String.downcase(currency) do
-          "nok" -> :NOK
-          _ -> raise "invalid currency code #{currency}"
-        end
-      end
-    end
   end
 
   defmodule Checkout do
