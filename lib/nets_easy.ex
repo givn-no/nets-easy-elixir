@@ -131,5 +131,25 @@ defmodule NetsEasy do
         }
       })
     end
+
+    @doc """
+    Refund a charge
+    """
+    @spec refund_payment(Tesla.Env.client(), String.t(), Model.RefundPaymentRequest.t()) ::
+            {:ok, Model.RefundPaymentResponse.t()}
+            | {:error, Tesla.Env.t()}
+            | {:error, {String.t(), Tesla.Env.t()}}
+    def refund_payment(client, charge_id, request_body) do
+      Tesla.post(
+        client,
+        "/v1/charges/#{charge_id}/refunds",
+        request_body
+      )
+      |> Helpers.evaluate_response(%{
+        200 => %{
+          decode_as: Model.RefundPaymentResponse.shell()
+        }
+      })
+    end
   end
 end
