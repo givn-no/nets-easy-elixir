@@ -146,7 +146,7 @@ defmodule NetsEasy do
         request_body
       )
       |> Helpers.evaluate_response(%{
-        200 => %{
+        201 => %{
           decode_as: Model.RefundPaymentResponse.shell()
         }
       })
