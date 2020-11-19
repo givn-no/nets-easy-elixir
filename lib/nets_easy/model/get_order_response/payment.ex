@@ -8,6 +8,7 @@ defmodule NetsEasy.Model.GetOrderResponse.Payment do
   .payment
   """
   @type t :: %__MODULE__{
+          charges: [Model.GetOrderResponse.Charge.t()],
           checkout: Model.GetOrderResponse.Checkout.t(),
           consumer: Model.GetOrderResponse.Consumer.t(),
           created: String.t(),
@@ -21,6 +22,7 @@ defmodule NetsEasy.Model.GetOrderResponse.Payment do
 
   @derive Poison.Encoder
   defstruct [
+    :charges,
     :checkout,
     :consumer,
     :created,
@@ -35,6 +37,7 @@ defmodule NetsEasy.Model.GetOrderResponse.Payment do
   @doc false
   def shell() do
     %__MODULE__{
+      charges: [Model.GetOrderResponse.Charge.shell()],
       checkout: Model.GetOrderResponse.Checkout.shell(),
       consumer: Model.GetOrderResponse.Consumer.shell(),
       order_details: Model.GetOrderResponse.OrderDetails.shell(),
