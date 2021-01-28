@@ -16,9 +16,7 @@ defmodule NetsEasy.Client.Helpers do
 
       nil ->
         {:error,
-         {"Could not find mapping for status #{status}, mapping exist for statuses: #{
-            inspect(Map.keys(mapping))
-          }", env}}
+         {"Could not find mapping for status #{status}, mapping exist for statuses: #{inspect(Map.keys(mapping))}", env}}
     end
   end
 

@@ -10,12 +10,12 @@ defmodule NetsEasy.Model.GetOrderResponse do
   See https: //tech.dibspayment.com/easy/api/paymentapi
   """
   @type t :: %__MODULE__{
-      payment: Model.GetOrderResponse.Payment.t()
+          payment: Model.GetOrderResponse.Payment.t()
         }
 
   @derive Poison.Encoder
   defstruct [
-      :payment
+    :payment
   ]
 
   @doc false

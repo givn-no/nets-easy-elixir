@@ -10,9 +10,9 @@ defmodule NetsEasy.Model.ChargePaymentRequest do
   See https://tech.dibspayment.com/easy/api/paymentapi#chargePayment
   """
   @type t :: %__MODULE__{
-    amount: Integer.t(),
-    order_items: [Model.OrderItem.t()]
-  }
+          amount: Integer.t(),
+          order_items: [Model.OrderItem.t()]
+        }
   @derive Poison.Encoder
   defstruct [
     :amount,
