@@ -112,6 +112,14 @@ defmodule NetsEasy do
       })
     end
 
+    defp build_idempotency_key_opts(idempotency_key) do
+      if not is_nil(idempotency_key) do
+        [headers: ["Idempotency-Key": idempotency_key]]
+      else
+        []
+      end
+    end
+
     @doc """
     Charge a payment.
     """
@@ -119,11 +127,12 @@ defmodule NetsEasy do
             {:ok, Model.ChargePaymentResponse.t()}
             | {:error, Tesla.Env.t()}
             | {:error, {String.t(), Tesla.Env.t()}}
-    def charge_payment(client, payment_id, request_body) do
+    def charge_payment(client, payment_id, request_body, idempotency_key \\ nil) do
       Tesla.post(
         client,
         "/v1/payments/#{payment_id}/charges",
-        request_body
+        request_body,
+        build_idempotency_key_opts(idempotency_key)
       )
       |> Helpers.evaluate_response(%{
         201 => %{
@@ -139,11 +148,12 @@ defmodule NetsEasy do
             {:ok, Model.RefundPaymentResponse.t()}
             | {:error, Tesla.Env.t()}
             | {:error, {String.t(), Tesla.Env.t()}}
-    def refund_payment(client, charge_id, request_body) do
+    def refund_payment(client, charge_id, request_body, idempotency_key \\ nil) do
       Tesla.post(
         client,
         "/v1/charges/#{charge_id}/refunds",
-        request_body
+        request_body,
+        build_idempotency_key_opts(idempotency_key)
       )
       |> Helpers.evaluate_response(%{
         201 => %{
