@@ -4,7 +4,7 @@ defmodule PostPaymentTest do
   require Logger
 
   test "client creation" do
-    client = Client.create_client()
+    client = TestHelpers.create_client()
     assert client != nil
   end
 end

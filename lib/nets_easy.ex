@@ -114,7 +114,7 @@ defmodule NetsEasy do
 
     defp build_idempotency_key_opts(idempotency_key) do
       if not is_nil(idempotency_key) do
-        [headers: ["Idempotency-Key": idempotency_key]]
+        [headers: [{"Idempotency-Key", idempotency_key}]]
       else
         []
       end

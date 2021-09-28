@@ -153,7 +153,7 @@ defmodule GetOrderTest do
                })
 
   test "GET /v1/payments" do
-    client = Client.create_client()
+    client = TestHelpers.create_client()
 
     mock(fn
       %{method: :get, url: "http://bears.gov/v1/payments/id"} ->
@@ -196,7 +196,7 @@ defmodule GetOrderTest do
   end
 
   test "GET /v1/payments with an actual response from their apis" do
-    client = Client.create_client()
+    client = TestHelpers.create_client()
 
     mock(fn
       %{method: :get, url: "http://bears.gov/v1/payments/id"} ->
