@@ -25,6 +25,7 @@ defmodule NetsEasy.Model.GetOrderResponse.Consumer do
   @doc false
   def shell() do
     %__MODULE__{
+      billing_address: Model.BillingAddress.shell(),
       shipping_address: Model.ShippingAddress.shell(),
       company: Model.GetOrderResponse.Company.shell(),
       private_person: Model.GetOrderResponse.PrivatePerson.shell()
