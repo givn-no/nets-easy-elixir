@@ -1,4 +1,4 @@
-defmodule NetsEasy.Model.ShippingAddress do
+defmodule NetsEasy.Model.BillingAddress do
   @moduledoc """
   """
   @type t :: %__MODULE__{

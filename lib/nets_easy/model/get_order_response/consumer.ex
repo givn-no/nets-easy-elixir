@@ -8,6 +8,7 @@ defmodule NetsEasy.Model.GetOrderResponse.Consumer do
   .consumer
   """
   @type t :: %__MODULE__{
+          billing_address: Model.BillingAddress.t(),
           shipping_address: Model.ShippingAddress.t(),
           company: Model.GetOrderResponse.Company.t(),
           private_person: Model.GetOrderResponse.PrivatePerson.t()
@@ -15,6 +16,7 @@ defmodule NetsEasy.Model.GetOrderResponse.Consumer do
 
   @derive Poison.Encoder
   defstruct [
+    :billing_address,
     :shipping_address,
     :company,
     :private_person
