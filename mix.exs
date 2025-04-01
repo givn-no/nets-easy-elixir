@@ -4,10 +4,11 @@ defmodule NetsEasy.MixProject do
   def project do
     [
       app: :nets_easy,
-      version: "0.2.3",
+      version: "0.2.4",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       description: description(),
+      hex: hex(),
       package: package(),
       deps: deps(),
       name: "nets_easy",
@@ -40,6 +41,13 @@ defmodule NetsEasy.MixProject do
       name: "nets_easy",
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/hooplab/nets-easy-elixir"}
+    ]
+  end
+
+  defp hex do
+    [
+      api_url: System.get_env("HEX_API_URL"),
+      api_key: System.get_env("HEX_API_KEY")
     ]
   end
 end
