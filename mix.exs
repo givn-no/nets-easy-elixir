@@ -4,7 +4,7 @@ defmodule NetsEasy.MixProject do
   def project do
     [
       app: :nets_easy,
-      version: "0.2.4",
+      version: "0.3.1",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       description: description(),
