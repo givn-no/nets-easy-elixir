@@ -28,14 +28,14 @@ defmodule NetsEasy.Middleware.JsonUtil do
   end
 
   def encode_and_camelize(%{} = body) do
-    camelized = mapKeys(body, fn key -> Inflex.camelize(key, :lower) end)
+    camelized = mapKeys(body, fn key -> NetsEasy.Inflex.camelize(key, :lower) end)
     Poison.encode(camelized)
   end
 
   def decode_and_snake_case(body) do
     case Poison.decode(body) do
       {:ok, parsed} ->
-        {:ok, mapKeys(parsed, &Inflex.underscore/1)}
+        {:ok, mapKeys(parsed, &NetsEasy.Inflex.underscore/1)}
 
       {:error, err} ->
         {:error, {err, body}}
